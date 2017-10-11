@@ -69,8 +69,6 @@ namespace SharpViewer
         public void DrawTriPersp(AffineVector3[] Points)
         {
             AffineVector3[] Clipped = Utils.ClipTri(Points, NearClippingDistance);
-            if (Clipped == null)
-                return;
             Vector2[] ClippedAndProjected = new Vector2[Clipped.Length];
 
             for (int i = 0; i < Clipped.Length; i++)
@@ -338,7 +336,7 @@ namespace SharpViewer
             if (Vec1Clip & Vec2Clip & Vec3Clip)
             {
                 /* All 3 are behind */
-                return null;
+                return new AffineVector3[0];
             }
             /* All but 1 are behind */
             if (!Vec1Clip & Vec2Clip & Vec3Clip)
@@ -406,7 +404,7 @@ namespace SharpViewer
                 return Return;
             }
 
-            return null;
+            return new AffineVector3[0];
         }
     }
 }
